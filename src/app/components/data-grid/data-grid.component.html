@@ -1,0 +1,59 @@
+<div>
+  <div style="display: flex; justify-content: flex-end; align-items: center">
+    <clr-icon shape="view-columns" (click)="showColsSelector = !showColsSelector" style="cursor: pointer"></clr-icon>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons (page)="paging(true)" (click)="paging()"></mat-paginator>
+  </div>
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort cdkDropListGroup>
+    <ng-container *ngFor="let column of columns; let i = index" [matColumnDef]="column.field">
+        <mat-header-cell *matHeaderCellDef>
+          <div>
+            <span (mousedown)="onResizeColumn($event, i, 'header' + i)" style="cursor: col-resize; padding: 5px"></span>
+          </div>
+          <div class="table-data-content" [id]="'header' + i">
+          <span style="cursor: pointer"
+                (click)="sortField(column.field)"> Long column name as hell or {{ column.field }} {{column.visible}} </span>
+            <span *ngIf="currentSort === column.field">
+          <clr-icon shape="arrow" *ngIf="currentDirection === 'asc'"></clr-icon>
+          <clr-icon shape="arrow" style="transform: rotate(180deg);" *ngIf="currentDirection === 'desc'"></clr-icon>
+        </span>
+          </div>
+          <div>
+        <span (mousedown)="onResizeColumn($event, i, 'header' + i)" style="cursor: col-resize; padding: 5px">
+        </span>
+          </div>
+        </mat-header-cell>
+
+      <mat-cell *matCellDef="let row">
+        <div class="table-data-content">
+          <span> {{ row[column.field] }}</span>
+        </div>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="getDisplayedColumns()"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: getDisplayedColumns();"></mat-row>
+  </mat-table>
+</div>
+
+<div class="clr-row" *ngIf="showColsSelector">
+  <div class="clr-col-lg-3 clr-col-md-4 clr-col-12">
+    <div class="card">
+      <div class="card-header">
+        Show Columns
+      </div>
+      <div class="card-block">
+        <div class="card-text">
+          <div style="display: flex" *ngFor="let column of originalColumns">
+            <div style="width: 30px" ><input type="checkbox" clrCheckbox
+                                             [(ngModel)]="column.visible"
+                                             (click)="configureCols(column)" /></div>
+            <div>{{column.field}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-sm btn-link" (click)="selectAll()">Select all</button>
+        <button class="btn btn-sm btn-link" (click)="showColsSelector = false">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
