@@ -1,0 +1,21 @@
+<header><h1>Setup</h1>Restrictions for this text input:<br/>
+  <table>
+    <tr>
+      <td>Lines:</td>
+      <td><input type="number" id="maxLines" value="4" (input)="updateRestrictions()"/></td>
+    </tr>
+    <tr>
+      <td>Characters per line:</td>
+      <td><input type="number" id="charactersPerLine" value="10" (keyup)="updateRestrictions()"
+                 (paste)="evaluatePastedData()"/></td>
+    </tr>
+  </table>
+</header><br/>
+<h1>Input</h1>
+<p>A flexible input field:</p>
+<label class="hidden" id="inputLabel">Your input</label><br/>
+<textarea type="text" class="inactive" rows="1" id="flexibleInputField" (paste)="handlePaste()"
+          (input)="formatTextAsRequired()" (focus)="onFocus()" (blur)="onBlur()" placeholder="Your input"></textarea>
+<p><span id="errors"></span><span id="count"></span></p>
+<h1>Output</h1>Per line:
+<div id="output"></div>

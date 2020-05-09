@@ -1,0 +1,28 @@
+body{padding:8px;}
+
+/* tangerine font */
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+header table td{border:none;}
+
+h1{font-size:24px; font-weight:bold;}
+
+input{width:100px; text-align:right;}
+
+label{font-size:12px; margin-bottom:-4px;padding-left:2px;}
+label.active {color:#c69311;transition: color 0.1s ease-out;}
+label.inactive {color:#666; transition: color 0.1s ease-out;}
+
+textarea{width: 343px; font-size: 14px; resize: none;outline: none; margin:0; border:none;border-radius:0px;}
+textarea::placeholder {color:#ccc;}
+textarea.active {border-bottom:2px solid #c69311; transition: border-width 0.1s ease-out;}
+textarea.inactive{border-bottom:1px solid #666666; transition: border-width 0.1s ease-out;}
+
+.hidden {visibility: hidden; opacity: 0;
+  transition: visibility 0s linear 300ms, opacity 300ms;}
+.show {visibility: visible; opacity: 1;
+  transition: visibility 0s linear 0, opacity 300ms;}
+
+#errors{color:red; font-size:14px;}
+#count{color:#666; font-size:12px;}
+table td{border:1px solid #e6e6e6;}
